@@ -1961,14 +1961,14 @@ switch (step) {
     r0 = s.retval;
     s.tmp_0 = start_tick_track__P6371_mk(s);
     s.tmp_0.arg0 = spawn_enemy_wave__P6562;
-    s.tmp_0.arg1 = 4;
+    s.tmp_0.arg1 = 5;
     s.callLocIdx = 293; s.pc = 115; return s.tmp_0;
   case 115:
     r0 = s.retval;
     globals.enemy_spawn_tick___6559 = (r0);
     s.tmp_0 = start_tick_track__P6371_mk(s);
     s.tmp_0.arg0 = next_enemy_phase__P6567;
-    s.tmp_0.arg1 = 100;
+    s.tmp_0.arg1 = 120;
     s.callLocIdx = 294; s.pc = 116; return s.tmp_0;
   case 116:
     r0 = s.retval;
@@ -1979,8 +1979,8 @@ switch (step) {
     globals.hero_health___6575 = (null);
     globals.hero_xp___6577 = (null);
     globals.hero_xp_increment___6579 = (0);
-    globals.hero_speed___6581 = (100);
-    globals.hero_regen___6583 = (0);
+    globals.hero_speed___6581 = (110);
+    globals.hero_regen___6583 = (1);
     s.tmp_0 = start_tick_track__P6371_mk(s);
     s.tmp_0.arg0 = regenerate_hero__P6588;
     s.tmp_0.arg1 = 4;
@@ -1991,12 +1991,12 @@ switch (step) {
     globals.hero_auto_collect_tick___6590 = (null);
     globals.hero_level___6592 = (1);
     globals.hero_angle___6594 = (0);
-    globals.hero_dodge___6596 = (0);
+    globals.hero_dodge___6596 = (5);
     globals.hero_dodge_speed___6600 = (150);
     globals.hero_dodge_heal___6602 = (0);
     globals.hero_auto_collect_chance___6604 = (0);
     globals.hero_gem_collect_radius___6606 = (24);
-    globals.hero_food_heal___6608 = (30);
+    globals.hero_food_heal___6608 = (45);
     r0 = pxsim_Array__mk();
     globals.hero_builds___6609 = (r0);
     globals.gem_bonus_xp___6612 = (0);
@@ -13981,7 +13981,7 @@ switch (step) {
     s.tmp_0 = control_EventContext_registerFrameHandler__P306_mk(s);
     r0 = s.arg0.fields["eventContext"];
     s.tmp_0.arg0 = r0;
-    s.tmp_0.arg1 = 200;
+    s.tmp_0.arg1 = 240;
     s.tmp_0.arg2 = control___screen_update__P780;
     s.callLocIdx = 1273; s.pc = 11; return s.tmp_0;
   case 11:
@@ -29080,7 +29080,7 @@ switch (step) {
     r0 = s.retval;
     s.tmp_0 = StatusBarSprite_max__P5037_mk(s);
     s.tmp_0.arg0 = globals.hero_health___6575;
-    s.tmp_0.arg1 = 200;
+    s.tmp_0.arg1 = 240;
     s.callLocIdx = 818; s.pc = 16; return s.tmp_0;
   case 16:
     r0 = s.retval;
@@ -29907,7 +29907,7 @@ switch (step) {
   case 107:
     r0 = s.retval;
     s.tmp_1 = r0;
-    r0 = (s.tmp_1 < 6);
+    r0 = (s.tmp_1 < 5);
     s.tmp_0 = r0;
     r0 = pxsim_numops_toBoolDecr(s.tmp_0);
     if (!r0) { step = 22; continue; }
@@ -30238,7 +30238,7 @@ switch (step) {
   case 2:
     r0 = s.retval;
     s.tmp_1 = r0;
-    r0 = (globals.enemy_extra_difficulty___6571 * 0.15);
+    r0 = (globals.enemy_extra_difficulty___6571 * 0.08);
     s.tmp_4 = r0;
     r0 = (1 + s.tmp_4);
     s.tmp_3 = r0;
@@ -30257,7 +30257,7 @@ switch (step) {
   case 4:
     r0 = s.retval;
     s.tmp_1 = r0;
-    r0 = (globals.enemy_extra_difficulty___6571 * 0.15);
+    r0 = (globals.enemy_extra_difficulty___6571 * 0.08);
     s.tmp_4 = r0;
     r0 = (1 + s.tmp_4);
     s.tmp_3 = r0;
@@ -30590,7 +30590,7 @@ switch (step) {
     s.enemies___7875 = (r0);
     r0 = pxsim_Array__length(s.enemies___7875);
     s.tmp_1 = r0;
-    r0 = (s.tmp_1 >= 6);
+    r0 = (s.tmp_1 >= 5);
     s.tmp_0 = r0;
     r0 = pxsim_numops_toBoolDecr(s.tmp_0);
     if (!r0) { step = 3; continue; }
@@ -30800,7 +30800,7 @@ switch (step) {
     if (!r0) { step = 14; continue; }
     r0 = pxsim_numops_toBoolDecr(globals.hyper_mode___6368);
     if (!r0) { step = 12; continue; }
-    r0 = 0.5;
+    r0 = 0.35;
     { step = 13; continue; }
   case 12:
     r0 = 1;
@@ -30831,7 +30831,7 @@ switch (step) {
   case 14:
     r0 = pxsim_numops_toBoolDecr(globals.hyper_mode___6368);
     if (!r0) { step = 15; continue; }
-    r0 = 0.5;
+    r0 = 0.35;
     { step = 16; continue; }
   case 15:
     r0 = 1;
@@ -30921,7 +30921,7 @@ switch (step) {
     if (!r0) { step = 23; continue; }
     r0 = pxsim_numops_toBoolDecr(globals.hyper_mode___6368);
     if (!r0) { step = 21; continue; }
-    r0 = 0.5;
+    r0 = 0.35;
     { step = 22; continue; }
   case 21:
     r0 = 1;
@@ -30952,7 +30952,7 @@ switch (step) {
   case 23:
     r0 = pxsim_numops_toBoolDecr(globals.hyper_mode___6368);
     if (!r0) { step = 24; continue; }
-    r0 = 0.5;
+    r0 = 0.35;
     { step = 25; continue; }
   case 24:
     r0 = 1;
@@ -30992,7 +30992,7 @@ switch (step) {
     if (!r0) { step = 30; continue; }
     r0 = pxsim_numops_toBoolDecr(globals.hyper_mode___6368);
     if (!r0) { step = 28; continue; }
-    r0 = 0.5;
+    r0 = 0.35;
     { step = 29; continue; }
   case 28:
     r0 = 1;
@@ -31023,7 +31023,7 @@ switch (step) {
   case 30:
     r0 = pxsim_numops_toBoolDecr(globals.hyper_mode___6368);
     if (!r0) { step = 31; continue; }
-    r0 = 0.5;
+    r0 = 0.35;
     { step = 32; continue; }
   case 31:
     r0 = 1;
@@ -31152,7 +31152,7 @@ switch (step) {
     r0 = 0;
     { step = 2; continue; }
   case 1:
-    r0 = (globals.enemy_extra_difficulty___6571 * 0.15);
+    r0 = (globals.enemy_extra_difficulty___6571 * 0.1);
   case 2:
     // jmp value (already in r0)
     s.tmp_0 = r0;
@@ -31171,7 +31171,7 @@ switch (step) {
     s.tmp_0.arg0 = s.enemy___8078;
     s.tmp_0.arg1 = "damage";
     s.tmp_1 = r0 = s.arg4;
-    r0 = (globals.enemy_extra_difficulty___6571 * 0.15);
+    r0 = (globals.enemy_extra_difficulty___6571 * 0.08);
     s.tmp_3 = r0;
     r0 = (1 + s.tmp_3);
     s.tmp_2 = r0;
@@ -31189,7 +31189,7 @@ switch (step) {
     r0 = s.retval;
     r0 = pxsim_numops_toBoolDecr(globals.hyper_mode___6368);
     if (!r0) { step = 3; continue; }
-    r0 = 1.2;
+    r0 = 1;
     { step = 4; continue; }
   case 3:
     r0 = 1;
@@ -31200,10 +31200,10 @@ switch (step) {
     s.tmp_1.arg0 = s.enemy___8078;
     s.tmp_1.arg1 = "speed";
     s.tmp_2 = Math_min__P83_mk(s);
-    s.tmp_2.arg0 = 90;
+    s.tmp_2.arg0 = 75;
     r0 = (s.arg5 * s.tmp_0);
     s.tmp_3 = r0;
-    r0 = (globals.enemy_extra_difficulty___6571 * 0.15);
+    r0 = (globals.enemy_extra_difficulty___6571 * 0.08);
     s.tmp_5 = r0;
     r0 = (1 + s.tmp_5);
     s.tmp_4 = r0;
@@ -46331,7 +46331,7 @@ switch (step) {
     { step = 6; continue; }
   case 5:
     s.tmp_3 = Math_percentChance__P2033_mk(s);
-    s.tmp_3.arg0 = 5;
+    s.tmp_3.arg0 = 12;
     s.callLocIdx = 892; s.pc = 43; return s.tmp_3;
   case 43:
     r0 = s.retval;
@@ -59295,7 +59295,7 @@ switch (step) {
   case 3:
     r0 = s.retval;
     s.tmp_4 = r0;
-    r0 = (s.tmp_2 - s.tmp_4);
+    r0 = (s.tmp_2 - (s.tmp_4 * 0.75));
     s.tmp_0.arg1 = r0;
     s.callLocIdx = 749; s.pc = 1; return s.tmp_0;
   case 1:
@@ -59332,7 +59332,7 @@ switch (step) {
   case 7:
     r0 = s.retval;
     s.tmp_6 = r0;
-    r0 = (s.tmp_4 + s.tmp_6);
+    r0 = (s.tmp_4 + (s.tmp_6 * 0.75));
     s.tmp_1.arg1 = r0;
     if (!s.tmp_1.arg0.vtable.iface) {
       s.retval = pxsim_pxtrt.mapSetByString(s.tmp_1.arg0, "total", s.tmp_1.arg1);
@@ -59359,7 +59359,7 @@ switch (step) {
   case 11:
     r0 = s.retval;
     s.tmp_6 = r0;
-    r0 = (s.tmp_4 / s.tmp_6);
+    r0 = ((s.tmp_4 * 0.75) / s.tmp_6);
     s.tmp_3 = r0;
     r0 = (s.tmp_3 * 16);
     s.tmp_2 = r0;

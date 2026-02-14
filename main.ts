@@ -27,29 +27,30 @@ PERFORMANCE CONSTANTS
 */
 const MAX_DROPS = 8
 const MAX_FOOD = 1
-const MAX_ENEMIES = 6
+const MAX_ENEMIES = 5
 const DEFAULT_WEAPON_LIFESPAN = 800
 const GEM_FLY_SPEED = 100
 
 /*
 BALANCE CONSTANTS
 */
-const ENEMY_DAMAGE_SCALE = 0.15
-const ENEMY_HEALTH_SCALE = 0.15
-const ENEMY_SPEED_SCALE = 0.15
-const ENEMY_MAX_SPEED = 90
+const ENEMY_DAMAGE_SCALE = 0.08
+const ENEMY_HEALTH_SCALE = 0.10
+const ENEMY_SPEED_SCALE = 0.08
+const ENEMY_MAX_SPEED = 75
 const ENEMY_TURN_RATE = 100
-const HEAL_DROP_CHANCE = 5
+const HEAL_DROP_CHANCE = 12
 const SPRAY_ANGLE_DELTA = 120 / 5
 const HERO_UPGRADE_CHOICES = 3
+const HERO_DAMAGE_TAKEN_SCALE = 0.75
 
 const ENEMY_KNOCKBACK_FRICTION = 15
 const WEAPON_KNOCKBACK_VELOCITY = 30
 
 const HYPER_PHASE_TICKS = 50
 const HYPER_XP_MULTIPLIER = 1.5
-const HYPER_BOSS_HP_SCALE = 0.5
-const HYPER_ENEMY_SPEED_SCALE = 1.2
+const HYPER_BOSS_HP_SCALE = 0.35
+const HYPER_ENEMY_SPEED_SCALE = 1.0
 
 /*
 GFX CONSTANTS
@@ -312,8 +313,8 @@ let wound_tracker: StatTracking[] = make_enemy_stat()
 
 let enemy_attack_cooldown_tick: TickTracking = start_tick_track(reset_enemy_attack_cooldown)
 enemy_attack_cooldown_tick.rate = 3
-let enemy_spawn_tick: TickTracking = start_tick_track(spawn_enemy_wave, 4)
-let enemy_phase_tick: TickTracking = start_tick_track(next_enemy_phase, 100)
+let enemy_spawn_tick: TickTracking = start_tick_track(spawn_enemy_wave, 5)
+let enemy_phase_tick: TickTracking = start_tick_track(next_enemy_phase, 120)
 let enemy_phase = 0
 let enemy_extra_difficulty = 0
 
@@ -321,19 +322,19 @@ let hero: Sprite = null
 let hero_health: StatusBarSprite = null
 let hero_xp: StatusBarSprite = null
 let hero_xp_increment: number = 0
-let hero_speed = 100
-let hero_regen = 0
+let hero_speed = 110
+let hero_regen = 1
 let hero_regen_tick: TickTracking = start_tick_track(regenerate_hero, 4)
 let hero_auto_collect_tick: TickTracking = null
 let hero_level = 1
 let hero_angle = 0
-let hero_dodge = 0
+let hero_dodge = 5
 let hero_dodge_distance = 8
 let hero_dodge_speed = 150
 let hero_dodge_heal = 0
 let hero_auto_collect_chance: number = 0
 let hero_gem_collect_radius: number = 24
-let hero_food_heal = 30
+let hero_food_heal = 45
 
 type HeroBuild = {
     prerequsites: string[]
@@ -1205,9 +1206,11 @@ function move_hero_to_dodge(target:Sprite) {
 }
 
 function wound_hero(target:Sprite) {
-    hero_health.value -= sprites.readDataNumber(target, "damage")
-    wound_tracker.find(value => value.name == sprites.readDataString(target, "name")).total += sprites.readDataNumber(target, "damage")
-    scene.cameraShake(Math.constrain(Math.floor(sprites.readDataNumber(target, "damage") / hero_health.max * 16), 2, 8), 250)
+    const incoming_damage = sprites.readDataNumber(target, "damage")
+    const reduced_damage = Math.max(1, Math.floor(incoming_damage * HERO_DAMAGE_TAKEN_SCALE))
+    hero_health.value -= reduced_damage
+    wound_tracker.find(value => value.name == sprites.readDataString(target, "name")).total += reduced_damage
+    scene.cameraShake(Math.constrain(Math.floor(reduced_damage / hero_health.max * 16), 2, 8), 250)
 }
 
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (hero_sprite, enemy) {
@@ -1288,8 +1291,8 @@ function setup_game () {
     scene.cameraFollowSprite(hero)
     hero_health = statusbars.create(20, 4, StatusBarKind.Health)
     hero_health.attachToSprite(hero, 4, 0)
-    hero_health.max = 200
-    hero_health.value = 200
+    hero_health.max = 240
+    hero_health.value = 240
     hero_health.setColor(7, 2)
     hero_health.z = Z_UI
     hero_xp = statusbars.create(scene.screenWidth() - 40, 5, StatusBarKind.Experience)
